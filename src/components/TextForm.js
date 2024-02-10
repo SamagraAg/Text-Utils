@@ -3,12 +3,30 @@ import { useState } from 'react';
 
 export default function TextForm() {
     const [text, setText] = useState("Welcome to textUtils")
-    function clickHandler(event) {
-        const userCase = event.target.value;
-        if (userCase === "uppercase")
-            setText(text.toUpperCase());
-        else if (userCase === "lowercase")
-            setText(text.toLowerCase());
+    function HandleUcase() {
+        const newText = text.toUpperCase();
+        setText(newText);
+    }
+    function HandleLcase() {
+        const newText = text.toLowerCase();
+        setText(newText);
+    }
+    function HandleClear() {
+        const newText = "";
+        setText(newText);
+    }
+    function HandleReverse() {
+        const words = text.split(" ");
+        const wordsRev = words.reverse();
+        const newText = wordsRev.join(" ");
+        setText(newText);
+    }   
+    function HandleCopy() {
+        navigator.clipboard.writeText(text).then(function () {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function (err) {
+            console.error('Async: Could not copy text: ', err);
+        });
     }
     function changeHandler(event) {
         const textVal = event.target.value
@@ -20,8 +38,11 @@ export default function TextForm() {
                 <h2 className='my-2'>Enter text below</h2>
                 <div>
                     <textarea value={text} onChange={changeHandler} className="form-control" id="textForm" rows="5"></textarea>
-                    <button className='btn btn-primary my-2' onClick={clickHandler} value="uppercase">Uppercase</button>
-                    <button className='btn btn-primary my-2 mx-2' onClick={clickHandler} value="lowercase">Lowercase</button>
+                    <button className='btn btn-primary my-2' onClick={HandleUcase} value="uppercase">Uppercase</button>
+                    <button className='btn btn-primary my-2 mx-2' onClick={HandleLcase} value="lowercase">Lowercase</button>
+                    <button className='btn btn-primary my-2 mx-2' onClick={HandleClear} value="lowercase">Clear Text</button>
+                    <button className='btn btn-primary my-2 mx-2' onClick={HandleReverse} value="lowercase">Reverse Text</button>
+                    <button className='btn btn-primary my-2 mx-2' onClick={HandleCopy} value="lowercase">Copy to clipboard</button>
                 </div>
             </div >
             <div className="container my-3">
