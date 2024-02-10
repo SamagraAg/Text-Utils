@@ -23,10 +23,9 @@ export default function TextForm(props) {
     }
     function HandleCopy() {
         navigator.clipboard.writeText(text).then(function () {
-            console.log('Async: Copying to clipboard was successful!');
         }, function (err) {
-            console.error('Async: Could not copy text: ', err);
         });
+        props.showAlert(`Copied to clipboard`, `success`)
     }
     function changeHandler(event) {
         const textVal = event.target.value
