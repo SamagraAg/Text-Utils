@@ -2,8 +2,13 @@ import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm.js';
 import Alert from './components/Alert.js';
-// import About from './components/About.js';
+import About from './components/About.js';
 import { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
 
 
 function App() {
@@ -18,9 +23,9 @@ function App() {
 
     //display Alert for only some seconds and then hide it(not close it)
     //for hiding it we set it to NULL
-    setTimeout(()=>{
+    setTimeout(() => {
       setAlert(null);
-    },1500);
+    }, 1500);
   }
   const toggleMode = () => {
     if (mode === "light") {
@@ -36,10 +41,14 @@ function App() {
   }
   return (
     <>
-      <Navbar mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
-      <TextForm showAlert={showAlert} mode={mode}></TextForm>
-      {/* <About></About> */}
+      <Router>
+        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <Routes>
+          <Route exact path="/" element={<TextForm showAlert={showAlert} mode={mode}></TextForm>} />
+          <Route exact path="/about" element=<About /> />
+        </Routes>
+      </Router>
     </>
   );
 }
