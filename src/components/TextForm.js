@@ -33,10 +33,10 @@ export default function TextForm(props) {
     }
     return (
         <>
-            <div style={{ color: props.mode === 'dark' ? 'white' : 'black' }} className='container my-3'>
+            <div style={{ color: props.mode === 'dark' ? 'white' : '#353030' }} className='container my-3'>
                 <h2 className='my-2'>Enter text below</h2>
                 <div>
-                    <textarea style={{ backgroundColor: props.mode === 'dark' ? '#112440' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} value={text} onChange={changeHandler} className="form-control" id="textForm" rows="5"></textarea>
+                    <textarea style={{ backgroundColor: props.mode === 'dark' ? '#353030' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} value={text} onChange={changeHandler} className="form-control" id="textForm" rows="5"></textarea>
                     <button disabled={text.length === 0} className='btn btn-primary my-2' onClick={HandleUcase} value="uppercase">Uppercase</button>
                     <button disabled={text.length === 0} className='btn btn-primary my-2 mx-2' onClick={HandleLcase} value="lowercase">Lowercase</button>
                     <button disabled={text.length === 0} className='btn btn-primary my-2 mx-2' onClick={HandleClear} value="lowercase">Clear Text</button>
