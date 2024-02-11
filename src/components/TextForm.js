@@ -37,21 +37,21 @@ export default function TextForm(props) {
                 <h2 className='my-2'>Enter text below</h2>
                 <div>
                     <textarea style={{ backgroundColor: props.mode === 'dark' ? '#112440' : 'white', color: props.mode === 'dark' ? 'white' : 'black' }} value={text} onChange={changeHandler} className="form-control" id="textForm" rows="5"></textarea>
-                    <button className='btn btn-primary my-2' onClick={HandleUcase} value="uppercase">Uppercase</button>
-                    <button className='btn btn-primary my-2 mx-2' onClick={HandleLcase} value="lowercase">Lowercase</button>
-                    <button className='btn btn-primary my-2 mx-2' onClick={HandleClear} value="lowercase">Clear Text</button>
-                    <button className='btn btn-primary my-2 mx-2' onClick={HandleReverse} value="lowercase">Reverse Text</button>
-                    <button className='btn btn-primary my-2 mx-2' onClick={HandleCopy} value="lowercase">Copy to clipboard</button>
+                    <button disabled={text.length === 0} className='btn btn-primary my-2' onClick={HandleUcase} value="uppercase">Uppercase</button>
+                    <button disabled={text.length === 0} className='btn btn-primary my-2 mx-2' onClick={HandleLcase} value="lowercase">Lowercase</button>
+                    <button disabled={text.length === 0} className='btn btn-primary my-2 mx-2' onClick={HandleClear} value="lowercase">Clear Text</button>
+                    <button disabled={text.length === 0} className='btn btn-primary my-2 mx-2' onClick={HandleReverse} value="lowercase">Reverse Text</button>
+                    <button disabled={text.length === 0} className='btn btn-primary my-2 mx-2' onClick={HandleCopy} value="lowercase">Copy to clipboard</button>
                 </div>
             </div >
             <div style={{ color: props.mode === 'dark' ? 'white' : 'black' }} className="container my-3">
                 <h2>Text Summary</h2>
-                <p className='my-1'>{text.split(" ").length} words and {text.length} characters</p>
-                <p className='my-1'>{text.split(" ").length * 0.008} minutes read</p>
+                <p className='my-1'>{text.split(" ").filter((element) => { return element.length != 0 }).length} words and {text.length} characters</p>
+                <p className='my-1'>{text.split(" ").filter((element) => { return element.length != 0 }).length * 0.008} minutes read</p>
             </div>
             <div style={{ color: props.mode === 'dark' ? 'white' : 'black' }} className="container my-3">
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length === 0 ? `Nothing to preview` : text}</p>
             </div>
         </>
     )
